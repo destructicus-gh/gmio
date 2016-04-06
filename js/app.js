@@ -18,11 +18,12 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
 
     .state('archetype', {
         url: '/archetypes',
-        controller: 'ArchetypeController',
-        controllerAs: 'vm',
+
         views: {
             '': {
                 templateUrl: 'views/archetypes/archetypes.html',
+                controller: 'ArchetypeController',
+                controllerAs: 'archMain'
             },
             'new@archetype': {
                 templateUrl: 'views/archetypes/archetypes-new.html',
@@ -40,10 +41,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
     // nested list with just some random string data
     .state('home.paragraph', {
         url: '/paragraph',
-        template: 'I could sure use a drink right now.',
-    })
-
-
-    ;
+        template: 'I could sure use a drink right now.'
+    });
 
 }); // closes $routerApp.config()

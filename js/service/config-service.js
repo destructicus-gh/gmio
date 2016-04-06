@@ -30,7 +30,7 @@
 
         function createConfig(callb) {
             return DriveFileService.createFile(
-                callb, fileMetadata, )
+                callb, fileMetadata )
         }
 
     }]);
