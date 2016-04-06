@@ -1,0 +1,104 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- CSS (load bootstrap
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
+    ) -->
+
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+    <!-- JS (load angular, ui-router, and our custom js file) -->
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-animate.js"></script>
+    <script src="js/lib/angular-ui-router.js"></script>
+
+
+    <!--Materialize-->
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/two.js"></script>
+    <script src="js/lib/ocanvas-2.8.3.js"></script>
+    <!--My files-->
+
+    <script src="js/app.js"></script>
+    <script src="js/multipart.js"></script>
+    <script src="js/controller/home/home-controller.js"></script>
+    <script src="js/controller/index/index-controller.js"></script>
+    <script src="js/controller/archetype/archetype-controller.js"></script>
+    <script src="js/controller/archetype/archetype-new-controller.js"></script>
+    <script src="js/controller/archetype/archetype-many-controller.js"></script>
+    <script src="js/controller/archetype/archetype-one-controller.js"></script>
+    <script src="js/service/drive-authentication-service.js"></script>
+    <script src="js/service/drive-file-service.js"></script>
+    <script src="js/service/file-structure-service.js"></script>
+    <script src="js/service/application-state-service.js"></script>
+    <link rel="stylesheet" href="css/gmio.css">
+    <link rel="stylesheet" href="css/appstyle.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/svg.css">
+</head>
+
+<!-- apply our angular app to our site -->
+
+<body ng-app="routerApp">
+    <div ng-controller="IndexController as vm">
+        <nav>
+            <div class="nav-wrapper grey darken-4">
+                <a ui-sref="home" class="brand-logo right">gm.io</a>
+                <ul id="nav-mobile" class="left">
+                    <li><a ui-sref="home">Home</a></li>
+                    <li ng-show="vm.authenticatedState == 'pass'">
+                        <a ui-sref="systems">Rule Sets</a>
+                    </li>
+                    <li ng-show="vm.authenticatedState == 'pass'">
+                        <a ui-sref="archetype">Archetypes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <!-- MAIN CONTENT -->
+        <div class="">
+            <div ng-if="vm.authenticatedState != 'pass'">
+                <p>You are not logged in to a google account. This is neccesary.</p>
+                <a class="btn">Login</a>
+                <div ng-if="vm.authenticatedState == 'loading'">
+                    <div class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+            <div ui-view ng-if="vm.authenticatedState == 'pass'"></div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function (gapi) {
+            function checkAuth() {
+
+            }
+        })(gapi);
+    </script>
+</body>
+
+</html>

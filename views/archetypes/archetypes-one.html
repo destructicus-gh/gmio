@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col s12 m12 l12">
+        <h5>Preview:{{vm.arch.name}}</h5>
+        <ul class="collection" ng-repeat="view in vm.arch.mainView" ng-init="active=false" ng-class="{expanded:active}">
+            <li class="collection-item" ng-class="{active: view.view!='single-string'}" ng-init="c = vm.d[vm.getIndexByName(view.data)]" ng-click="active=!active">
+                {{view.data}}
+                <a class="secondary-content" ng-show="(view.view == 'single-string')">{{c}}</a>
+            </li>
+            <li class="collection-item data-content" ng-class="{'show-content':active, 'hide-content':!active}">
+                <p ng-repeat="e in vm.arch.data[vm.getIndexByName(view.data)].data">{{e}}</p>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!--Todo:
+put the top level controlls into a bar up top
+link two panels
+make adding work
+remove
+edit sub list things
+master save
+
+actual save functionality
+-->

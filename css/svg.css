@@ -1,0 +1,17 @@
+.base-rect {
+    fill-opacity: 1;
+    fill-rule: evenodd;
+    stroke: solid;
+    stroke-width: 1px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 1;
+    transition: all .5s;
+    filter:url(#filter4376);
+}
+
+
+.base-rect:hover{
+
+
+}

@@ -1,0 +1,12 @@
+
+
+.slide-card.on-add {
+
+    transform:translateY(0%);
+}
+
+.slide-card.on {
+    transform:translateY(-100%);
+
+}
+

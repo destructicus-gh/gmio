@@ -1,0 +1,165 @@
+
+.game-card-container img {
+    width: 100%;
+    padding: 0;
+    margin-top: -12%;
+}
+
+.game-card-container {
+    max-height: 200px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.ratingspan {
+    width: 30px;
+    text-align: center;
+
+}
+
+.rating-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.rating-label {
+    float: right;
+    font-style: italic;
+
+}
+
+.sort-span {
+    width: 100% !important;
+
+}
+
+.row .rightcol {
+    float: right;
+}
+
+.mcard {
+    border-bottom-width: 0;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-block;
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+
+.mcard:hover {
+
+}
+
+.nobutt {
+    margin-bottom: 5px !important;
+}
+
+.mtitle {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.buttonbox {
+    float: left;
+    margin: 1.14rem 0 0.912rem 0;
+}
+
+.skinnybtn {
+    padding-right: .75rem;
+    padding-left: .75rem;
+}
+
+.less-padding {
+    padding: 5px;
+}
+
+.hover-item {
+    padding: 15px;
+    margin: 15px;
+    font-size: 16px;
+
+    transition: all .3s ease-out;
+    transition-property: initial;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    transition-delay: initial;
+
+}
+
+.arrow-open{
+    transform: rotate(90deg);
+    cursor: pointer;
+
+}
+.arrow-close{
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+.raised{
+    margin:15px;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+.hover-item:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.09), 0 4px 15px 0 rgba(0, 0, 0, 0.07);
+    transition: all .3s ease-out;
+    transition-property: initial;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    transition-delay: initial;
+
+    background-color:rgba(0, 0, 0, 0.07);
+}
+
+.directory-list-item {
+    margin: 10px 0 10px 10px;
+    padding:10px 0 10px 10px;
+    cursor: default;
+}
+
+.shadow-item{
+    background-color:rgba(0, 0, 0, 0.07);
+}
+
+#main{
+    display:block;
+    width:100%;
+    min-height:700px;
+    height:100%;
+}
+
+
+.slide-card {
+    transition: 0.5s linear all;
+    padding:20px;
+    position:absolute;
+    width:100%;
+    z-index:1;
+    top: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: white;
+    display:block;
+}
+
+
+
+html{
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}

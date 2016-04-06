@@ -1,0 +1,17 @@
+<!-- partial-home.html -->
+
+<div class="jumbotron text-center">
+    <h3>Home</h3>
+    <p>Welcome to gm.io.</p>
+    <p>{{home.items?"Files:":"No Files."}}</p>
+    <ul>
+        <li ng-repeat="item in home.items">{{item.title}}</li>
+    </ul>
+    <!--
+    <a ui-sref=".list" class="btn">List</a>
+    <a ui-sref=".paragraph" class="btn">Paragraph</a>
+-->
+    <a ng-click="home.saveTest()" class="btn">Save Test</a>
+</div>
+
+<!--<div ui-view></div>-->

@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="row">
+            <div class="input-field col s12 m6 l6">
+                <input id="name" type="text" ng-model="archName" style="width:80%">
+                <label for="name">Archetype Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__col" style="flex:1">
+                        <div class="grid__item">
+                            <p ng-repeat="t in vm.fieldTypeOptions">
+                                <input name="group1" ng-model="vm.currentField.type" value="{{t.value}}" type="radio" id="a{{$index}}" />
+                                <label for="a{{$index}}">{{t.display}}</label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid__item bottom-right">
+                        <div class="grid__col">
+                            <div class="grid__item kill-padding" ng-show="vm.getFormTitle(vm.currentField.type).field1.length>0">
+                                <div class="input-field kill-margin">
+                                    <input id="text1" type="text" ng-model="text1">
+                                    <label for="text1">{{vm.getFormTitle(vm.currentField.type).field1[0]}}</label>
+                                </div>
+                                <div class="input-field kill-margin" ng-show="vm.getFormTitle(vm.currentField.type).field1.length>1">
+                                    <input id="text2" type="text" ng-model="text2">
+                                    <label for="text2">{{vm.getFormTitle(vm.currentField.type).field1[1]}}</label>
+                                </div>
+                            </div>
+                            <div class="grid__item">
+                                <button class="btn" style="height:3rem;float:right">add new field</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
