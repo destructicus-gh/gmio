@@ -43,10 +43,12 @@
     <script src="js/controller/archetype/archetype-new-controller.js"></script>
     <script src="js/controller/archetype/archetype-many-controller.js"></script>
     <script src="js/controller/archetype/archetype-one-controller.js"></script>
+    <script src="js/service/application-state-service.js"></script>
+    <script src="js/service/config-service.js"></script>
     <script src="js/service/drive-authentication-service.js"></script>
     <script src="js/service/drive-file-service.js"></script>
     <script src="js/service/file-structure-service.js"></script>
-    <script src="js/service/application-state-service.js"></script>
+    <script src="js/service/nav-bar-service.js"></script>
     <link rel="stylesheet" href="css/gmio.css">
     <link rel="stylesheet" href="css/appstyle.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -60,6 +62,7 @@
         <nav>
             <div class="nav-wrapper grey darken-4">
                 <a ui-sref="home" class="brand-logo right">gm.io</a>
+                <!--
                 <ul id="nav-mobile" class="left">
                     <li><a ui-sref="home">Home</a></li>
                     <li ng-show="vm.authenticatedState == 'pass'">
@@ -67,6 +70,12 @@
                     </li>
                     <li ng-show="vm.authenticatedState == 'pass'">
                         <a ui-sref="archetype">Archetypes</a>
+                    </li>
+                </ul>
+-->
+                <ul id="nav-mobile" class="left">
+                    <li ng-repeat="nav in vm.state.navBar" ng-hide="(vm.authenticatedState != 'pass' && nav.needsLogin) || vm.state.play && nav.hideWhilePlay">
+                        <a ui-sref="{{nav.link}}">{{nav.title}}</a>
                     </li>
                 </ul>
             </div>
@@ -77,9 +86,10 @@
         <!-- MAIN CONTENT -->
         <div class="">
             <div ng-if="vm.authenticatedState != 'pass'">
-                <p>You are not logged in to a google account. This is neccesary.</p>
+                <p>You are not logged in to a google account yet. This is neccesary.</p>
                 <a class="btn">Login</a>
                 <div ng-if="vm.authenticatedState == 'loading'">
+                    Logging in...
                     <div class="progress">
                         <div class="indeterminate"></div>
                     </div>
@@ -94,9 +104,7 @@
     </div>
     <script type="text/javascript">
         (function (gapi) {
-            function checkAuth() {
-
-            }
+            function checkAuth() {}
         })(gapi);
     </script>
 </body>

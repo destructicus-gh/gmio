@@ -8,6 +8,7 @@
         this.authentiationState = "loading";
         this.isSetUp = false;
         this.hasRunTutorial = false;
+        this.navBar = [];
     }]);
 
 })();
