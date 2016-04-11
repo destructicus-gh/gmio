@@ -5,44 +5,42 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
         .state('home', {
-        url: '/home',
-        templateUrl: 'views/partial-home.html',
-        controller: 'HomeController',
-        controllerAs: 'home'
-    })
-
-    .state('system', {
-        url: '/rule-sets',
-        templateUrl: 'views/systems.html'
-    })
-
-    .state('archetype', {
-        url: '/archetypes',
-        controller: 'ArchetypeController',
-        controllerAs: 'vm',
-        views: {
-            '': {
-                templateUrl: 'views/archetypes/archetypes.html',
-            },
-            'new@archetype': {
-                templateUrl: 'views/archetypes/archetypes-new.html',
-                controller: 'ArchetypeNewController',
-                controllerAs: 'vm'
-            },
-            'one@archetype': {
-                templateUrl: 'views/archetypes/archetypes-one.html',
-                controller: 'ArchetypeOneController',
-                controllerAs: 'vm'
+            url: '/home',
+            templateUrl: 'views/partial-home.html',
+            controller: 'HomeController',
+            controllerAs: 'home',
+            onEnter: function (ApplicationState, NavBarService) {
+                ApplicationState.navBar = NavBarService.home();
             }
-        }
-    })
-
-    // nested list with just some random string data
-    .state('home.paragraph', {
-        url: '/paragraph',
-        template: 'I could sure use a drink right now.',
-    })
-
+        })
+        .state('system', {
+            url: '/rule-sets',
+            templateUrl: 'views/systems.html'
+        })
+        .state('settings', {
+            url: '/settings',
+            template: 'This page has not been set up yet, thanks.'
+        })
+        .state('archetype', {
+            url: '/archetypes',
+            controller: 'ArchetypeController',
+            controllerAs: 'vm',
+            views: {
+                '': {
+                    templateUrl: 'views/archetypes/archetypes.html',
+                },
+                'new@archetype': {
+                    templateUrl: 'views/archetypes/archetypes-new.html',
+                    controller: 'ArchetypeNewController',
+                    controllerAs: 'vm'
+                },
+                'one@archetype': {
+                    templateUrl: 'views/archetypes/archetypes-one.html',
+                    controller: 'ArchetypeOneController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
 
     ;
 
