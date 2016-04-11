@@ -12,23 +12,23 @@
 
 .grid__item {
     flex: 1;
-    padding: 12 px;
-    border: solid 1 px# e7e7e7;
+    padding: 12px;
+    /*    border: solid 1px #e7e7e7;*/
 }
 
 .green-box {
     background-color: #26a69a;
-    color: # eafaf9;
+    color: #eafaf9;
 }
 
 .data-content {
-    padding: 0 18 px;
+    padding: 0 18px;
     overflow-y: hidden;
     overflow-x: hidden;
 }
 
 .data-content.show-content {
-    max-height: 500 px;
+    max-height: 500px;
     opacity: 1;
     transition: all .6s;
 }
@@ -53,4 +53,8 @@
 
 .kill-margin {
     margin: 0;
+}
+
+.max-width {
+    width: 100%;
 }
