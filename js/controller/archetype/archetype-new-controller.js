@@ -9,7 +9,7 @@
 
 
         CurrentEntity.entity.editing = true;
-        vm.archName = "";
+        vm.arch = CurrentEntity.entity;
         vm.text1 = "";
         vm.text2 = "";
 

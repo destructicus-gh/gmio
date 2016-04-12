@@ -8,10 +8,10 @@
         function (DriveFileService, FileStructureService, CurrentEntity) {
             var vm = this;
             CurrentEntity.entity.arch = {
-                name: "aname",
+                name: "",
                 about: "Holds the data for the stuff",
                 tags: ["fnd"],
-                displayName: "Name",
+                displayField: "Name",
                 data: [{
                     name: "Name"
                 }, {
@@ -91,6 +91,10 @@
 
             vm.selectSearchType = function (op) {
                 vm.searchType = op;
+            };
+
+            vm.addOneToSmall = function (index){
+                console.log("add one to", index)
             };
 
             function getEditOptions() {
