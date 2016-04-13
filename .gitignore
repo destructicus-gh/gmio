@@ -47,4 +47,5 @@ Temporary Items
 .apdisk
 *.xml
 .idea/gmio.iml
+.idea/.name
 *.name

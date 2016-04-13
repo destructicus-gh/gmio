@@ -1,0 +1,40 @@
+<div class="jumbotron text-center">
+    <h3>Settings</h3>
+    <p>Global settings for the entire application</p>
+    <div class="grid">
+        <div class="grid__row max-width">
+            <div class="grid__item max-width">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-field="id">Name</th>
+                            <th data-field="name">Value</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td>
+                                <div class="input-field kill-padding">
+                                    <input type="text" ng-model="settings.config.settings.name">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Place:</td>
+                            <td>
+                                <div class="input-field kill-padding">
+                                    <input type="text" ng-model="settings.config.settings.place">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="waves-effect waves-light btn" style="float:right;" ng-click="settings.save()">save</a>
+            </div>
+            <div class="grid__item max-width">
+            </div>
+        </div>
+    </div>
+</div>

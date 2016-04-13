@@ -13,7 +13,6 @@
 .grid__item {
     flex: 1;
     padding: 12px;
-    /*border: solid 1px #e7e7e7;*/
 }
 
 .green-box {
@@ -57,6 +56,11 @@
 .kill-margin {
     margin: 0;
 }
-.flex-middle-v{
-    align-self:center
+
+.max-width {
+    width: 100%;
+}
+
+.flex-middle-v {
+    align-self: center
 }

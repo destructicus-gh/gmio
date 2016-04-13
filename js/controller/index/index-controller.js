@@ -4,12 +4,13 @@
 
 (function () {
     'use strict';
-    angular.module('routerApp').controller('IndexController', ['DriveAuthenticationService', function (DriveAuthenticationService) {
+    angular.module('routerApp').controller('IndexController', ['DriveAuthenticationService', 'NavBarService', 'ApplicationState', 'FileStructureService', function (DriveAuthenticationService, NavBarService, ApplicationState, FileStructureService) {
         var vm = this;
         vm.authenticatedState = "loading";
+        vm.navBar = NavBarService;
+        vm.state = ApplicationState;
 
-
-        var prod = true;
+        var prod = false;
 
         if (!prod) {
             setTimeout(function () {
@@ -18,31 +19,27 @@
                 }, function (result) {
                     vm.authenticatedState = "sucked";
                     DriveAuthenticationService.login().then(function (value) {
+                        console.log("login generates", value)
                         vm.authenticatedState = "pass";
                     }, function (value) {
                         vm.authenticatedState = "sucked";
                     });
 
+                }, function (result) {
+                    console.log("check auth", result);
+                }).then(function (ret) {
+                    return FileStructureService.init();
+                }).then(function (ret) {
+                    console.log("return from fileinit", ret);
                 });
-            }, 500); //just enough time for the page to load. it's dirty but it works.
+            }, 1000); //just enough time for the page to load. it's dirty but it works.
         } else {
             vm.authenticatedState = "pass";
         }
 
 
+
         vm.files = [];
-
-
-        /**
-         * Print files.
-         */
-        function listFiles() {
-            var request = gapi.client.drive.files.list({
-                'maxResults': 100
-            }, function (data) {
-                vm.files = data;
-            });
-        }
     }]);
 
 })();
