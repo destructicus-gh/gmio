@@ -46,8 +46,5 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
                     controllerAs: 'vm'
                 }
             }
-        })
-
-    ;
-
+        });
 }); // closes $routerApp.config()

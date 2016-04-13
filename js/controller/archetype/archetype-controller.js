@@ -4,8 +4,12 @@
 
 (function () {
     'use strict';
-    angular.module('routerApp').controller('ArchetypeController', ['DriveFileService', 'FileStructureService', function (DriveFileService, FileStructureService) {
-        var vm = this;
+    angular.module('routerApp').controller('ArchetypeController', ['DriveFileService', 'FileStructureService', 'CurrentEntity', '$state',
+        function (DriveFileService, FileStructureService, CurrentEntity, $state) {
+        var archMain = this;
+        archMain.shareData = {name:"yup"};
+        archMain.state =  $state;
+        archMain.currentEntity = CurrentEntity.entity;
         }]);
 
 })();

@@ -1,7 +1,17 @@
-<h4>Archetypes</h4>
-<a ui-sref="new">New Archetype</a>
-
-
+<div class="grid" ng-init="archq = 'helloderr'">
+    <div class="grid__row z-depth-1">
+        <div class="grid__item" style="flex:2">
+            <h4>Archetypes</h4></div>
+        <div class="grid__item " style="align-self: center;" >
+            <button ui-sref="new" class="btn skinnybtn" style="width: 100%;">New Archetype</button>
+        </div>
+        <div class="grid__item " style="align-self: center;">
+            <button ui-sref="new" class="btn skinnybtn" style="width: 100%;">See All</button>
+        </div>
+        <div class="grid__item" style="flex:4">
+        </div>
+    </div>
+</div>
 <div class="grid">
     <div class="grid__row">
         <div class="grid__item">
@@ -12,3 +22,4 @@
         </div>
     </div>
 </div>
+<pre>{{archMain.currentEntity|json}}</pre>

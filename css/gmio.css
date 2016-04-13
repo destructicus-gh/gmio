@@ -13,7 +13,6 @@
 .grid__item {
     flex: 1;
     padding: 12px;
-    /*    border: solid 1px #e7e7e7;*/
 }
 
 .green-box {
@@ -37,13 +36,16 @@
     max-height: 0;
     opacity: 0;
     padding: 0;
-    border-width: 0;
-    border-color: white;
+    border: 0 white;
     transition: all .4s;
 }
 
 .collection.expanded {
     margin: 0.5rem;
+    transition: all .4s;
+}
+
+.collection.nexpanded {
     transition: all .4s;
 }
 
@@ -57,4 +59,8 @@
 
 .max-width {
     width: 100%;
+}
+
+.flex-middle-v {
+    align-self: center
 }

@@ -1,13 +1,61 @@
 <div class="row">
     <div class="col s12 m12 l12">
         <h5>Preview:{{vm.arch.name}}</h5>
-        <ul class="collection" ng-repeat="view in vm.arch.mainView" ng-init="active=false" ng-class="{expanded:active}">
-            <li class="collection-item" ng-class="{active: view.view!='single-string'}" ng-init="c = vm.d[vm.getIndexByName(view.data)]" ng-click="active=!active">
-                {{view.data}}
+        <ul class="collection kill-margin" ng-repeat="view in vm.arch.mainView" ng-init="active=false"
+            ng-class="{expanded:active, nexpanded:!active}">
+            <li class="collection-item" ng-class="{active: view.view!='single-string'}"
+                ng-init="c = vm.d[vm.getIndexByName(view.data)]" ng-click="active=!active">
+                <span>{{view.data}}</span>
                 <a class="secondary-content" ng-show="(view.view == 'single-string')">{{c}}</a>
             </li>
             <li class="collection-item data-content" ng-class="{'show-content':active, 'hide-content':!active}">
-                <p ng-repeat="e in vm.arch.data[vm.getIndexByName(view.data)].data">{{e}}</p>
+                <div ng-if="vm.editing" class="grid">
+                    <div class="grid__row" ng-init="fieldIndex = $index">
+                        <div class="grid__item" style="flex: 6">
+                            Edit options:
+                        </div>
+                        <div class="grid__item kill-padding flex-middle-v" ng-repeat="button in vm.editOptions">
+                            <button class="btn-floating waves-effect waves-light black"
+                                    ng-click="button.callback(vm.getIndexByName(view.data))"
+                                    ng-disabled="!button.show(vm.getIndexByName(view.data))">
+                                <i class="material-icons">{{button.icon}}</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="collection-item data-content" ng-class="{'show-content':active, 'hide-content':!active}">
+                <div class="grid">
+                    <div class="grid__row" ng-repeat="e in vm.arch.data[vm.getIndexByName(view.data)].data"
+                         ng-init="fieldIndex = $index">
+                        <div class="grid__item" style="flex: 6">
+                            <p>{{e.name}}</p>
+                        </div>
+                        <div ng-if="vm.editing" class="grid__item kill-padding flex-middle-v"
+                             ng-repeat="button in vm.editSubOptions">
+                            <button class="btn-floating waves-effect waves-light"
+                                    ng-click="button.callback(vm.getIndexByName(view.data), vm.getIndexBySubName(view.data, e.name))"
+                                    ng-disabled="!button.show( vm.getIndexBySubName(view.data, e.name))">
+                                <i class="material-icons">{{button.icon}}</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="collection-item data-content" ng-class="{'show-content':active, 'hide-content':!active}">
+                <div class="grid">
+                    <div class="grid__row">
+                        <div class="grid__item" style="flex: 9">
+                            <span>Add one:</span>
+                        </div>
+                        <div ng-if="vm.editing" class="grid__item kill-padding flex-middle-v">
+                            <button class="btn-floating waves-effect waves-light black"
+                                    ng-click="vm.addOneToSmall($index)">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </li>
 
         </ul>
@@ -15,8 +63,6 @@
 </div>
 
 <!--Todo:
-put the top level controlls into a bar up top
-link two panels
 make adding work
 remove
 edit sub list things
