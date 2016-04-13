@@ -6,12 +6,12 @@
     'use strict';
     angular.module('routerApp').service('DriveFileService', ['$q', function ($q) {
         var DEFAULT_FILE = {
-            content: ''
-            , metadata: {
-                id: null
-                , title: 'untitled.txt'
-                , mimeType: 'text/plain'
-                , editable: true
+            content: '',
+            metadata: {
+                id: null,
+                title: 'untitled.txt',
+                mimeType: 'text/plain',
+                editable: true
             }
         };
 
@@ -19,23 +19,23 @@
 
 
         return {
-            listFiles: listFiles
-            , loadFile: loadFile
-            , saveFile: saveFile
-            , newFolder: newFolder
-            , searchFile: searchFile
-            , searchInFolder: searchInFolder
-            , getMetadata: getMetadata
-            , justOne: justOne
-            , trashFile: trashFile
+            listFiles: listFiles,
+            loadFile: loadFile,
+            saveFile: saveFile,
+            newFolder: newFolder,
+            searchFile: searchFile,
+            searchInFolder: searchInFolder,
+            getMetadata: getMetadata,
+            justOne: justOne,
+            trashFile: trashFile
         };
 
 
         function listFiles(callb) {
             return $q.when(gapi.client.request({
-                'path': '/drive/v2/files'
-                , 'method': 'GET'
-                , 'params': {
+                'path': '/drive/v2/files',
+                'method': 'GET',
+                'params': {
                     'maxResults': '5'
                 }
             }, callb));
@@ -49,15 +49,15 @@
          * @return {Promise} promise that resolves to an object containing the file metadata & content
          */
         function loadFile(fileId) {
-            console.log("service loadfile");
+            console.log("service loadfile", fileId);
             return fileId ? $q.all([$q.when(gapi.client.drive.files.get({
-                fileId: fileId
-                , fields: DEFAULT_FIELDS
+                fileId: fileId,
+                fields: DEFAULT_FIELDS
             })), $q.when(gapi.client.drive.files.get({
-                fileId: fileId
-                , alt: 'media'
+                fileId: fileId,
+                alt: 'media'
             }))]).then(function (responses) {
-                console.log("then b");
+                console.log("then b", responses);
                 return combineAndStoreResults(responses[0].result, responses[1].body);
             }) : $q.when(DEFAULT_FILE);
         }
@@ -89,16 +89,16 @@
                 .finish();
 
             var uploadRequest = gapi.client.request({
-                path: path
-                , method: method
-                , params: {
-                    uploadType: 'multipart'
-                    , fields: DEFAULT_FIELDS
-                }
-                , headers: {
+                path: path,
+                method: method,
+                params: {
+                    uploadType: 'multipart',
+                    fields: DEFAULT_FIELDS
+                },
+                headers: {
                     'Content-Type': multipart.type
-                }
-                , body: multipart.body
+                },
+                body: multipart.body
             }, function (response) {
                 return combineAndStoreResults(response.result, content);
             });
@@ -106,7 +106,6 @@
         }
 
         function justOne(searchResult) {
-            console.log(searchResult);
             if (searchResult.result.items.length > 0) {
                 return searchResult.result.items[0];
             } else {
@@ -116,9 +115,9 @@
 
         function searchFile(q) {
             var uploadRequest = gapi.client.request({
-                path: '/drive/v2/files'
-                , method: 'GET'
-                , params: {
+                path: '/drive/v2/files',
+                method: 'GET',
+                params: {
                     q: q
                 }
             });
@@ -127,9 +126,9 @@
 
         function searchInFolder(q, folderId) {
             var uploadRequest = gapi.client.request({
-                path: '/drive/v2/files/' + ((folderId) ? folderId : 'root') + '/children'
-                , method: 'GET'
-                , params: {
+                path: '/drive/v2/files/' + ((folderId) ? folderId : 'root') + '/children',
+                method: 'GET',
+                params: {
                     q: q
                 }
             });
@@ -138,9 +137,9 @@
 
         function getMetadata(fileId) {
             var uploadRequest = gapi.client.request({
-                path: '/drive/v2/files/' + fileId
-                , method: 'GET'
-                , params: {
+                path: '/drive/v2/files/' + fileId,
+                method: 'GET',
+                params: {
 
                 }
             });
@@ -157,17 +156,17 @@
                 });
             }
             var uploadRequest = gapi.client.request({
-                path: '/drive/v2/files'
-                , method: 'POST'
-                , headers: {
+                path: '/drive/v2/files',
+                method: 'POST',
+                headers: {
                     'Content-Type': "application/json"
-                }
-                , body: {
-                    "title": folderName
-                    , "parents": [{
+                },
+                body: {
+                    "title": folderName,
+                    "parents": [{
                         "id": parent
-                    }]
-                    , "mimeType": "application/vnd.google-apps.folder"
+                    }],
+                    "mimeType": "application/vnd.google-apps.folder"
                 }
             });
             return $q.when(uploadRequest);
@@ -176,8 +175,8 @@
         function combineAndStoreResults(metadata, content) {
             console.log("comb n store");
             var file = {
-                metadata: metadata
-                , content: content
+                metadata: metadata,
+                content: content
             };
             return file;
         }

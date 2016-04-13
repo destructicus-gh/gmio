@@ -19,7 +19,13 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('settings', {
             url: '/settings',
-            template: 'This page has not been set up yet, thanks.'
+            controller: "SettingsController",
+            controllerAs: "settings",
+            templateUrl: 'views/settings.html',
+            onEnter: function (ApplicationState, NavBarService) {
+                ApplicationState.navBar = NavBarService.settings();
+            }
+
         })
         .state('archetype', {
             url: '/archetypes',
