@@ -10,7 +10,7 @@
         vm.navBar = NavBarService;
         vm.state = ApplicationState;
 
-        var prod = false;
+        var prod = true;
 
         if (!prod) {
             setTimeout(function () {
@@ -19,7 +19,7 @@
                 }, function (result) {
                     vm.authenticatedState = "sucked";
                     DriveAuthenticationService.login().then(function (value) {
-                        console.log("login generates", value)
+                        console.log("login generates", value);
                         vm.authenticatedState = "pass";
                     }, function (value) {
                         vm.authenticatedState = "sucked";

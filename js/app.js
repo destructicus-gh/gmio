@@ -17,6 +17,10 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/rule-sets',
             templateUrl: 'views/systems.html'
         })
+        .state('modal', {
+            url: '/modal',
+            template: '<div data-modal-trigger ng-click="openModal()" url="views/settings.html">HEY</div>'
+        })
         .state('settings', {
             url: '/settings',
             controller: "SettingsController",
@@ -33,7 +37,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             controllerAs: 'vm',
             views: {
                 '': {
-                    templateUrl: 'views/archetypes/archetypes.html',
+                    templateUrl: 'views/archetypes/archetypes.html'
                 },
                 'new@archetype': {
                     templateUrl: 'views/archetypes/archetypes-new.html',
