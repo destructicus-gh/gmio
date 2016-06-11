@@ -7,6 +7,12 @@
     angular.module('routerApp').service('CurrentEntity', ['$q', 'DriveFileService', function ($q, DriveFileService) {
         this.entity = {};
         this.entityType = null;
+        this.listeners = [];
+        this.updateAll = function () {
+            _.each(this.listeners, function (it) {
+                it.currentEntityUpdate();
+            })
+        }
     }]);
 
 })();

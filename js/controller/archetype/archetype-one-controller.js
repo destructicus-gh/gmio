@@ -7,71 +7,87 @@
     angular.module('routerApp').controller('ArchetypeOneController', ['DriveFileService', 'FileStructureService', 'CurrentEntity',
         function (DriveFileService, FileStructureService, CurrentEntity) {
             var vm = this;
-            CurrentEntity.entity.arch = {
-                name: "",
-                about: "Holds the data for the stuff",
-                tags: ["fnd"],
-                displayField: "Name",
-                data: [{
-                    name: "Name"
-                }, {
-                    name: "Characteristics",
-                    type: "array-val",
-                    data: [{
-                        name: "int"
-                    }, {
-                        name: "char"
-                    }, {
-                        name: "float"
-                    }, {
-                        name: "string"
-                    }]
-                }, {
-                    name: "Skills",
-                    type: "array-val",
-                    data: [{
-                        name: "skill1"
-                    }, {
-                        name: "skill2"
-                    }, {
-                        name: "skill3"
-                    }]
-                }, {
-                    name: "Items",
-                    type: "array-arch"
-                }],
-                mainView: [{
-                    data: "Name",
-                    view: "single-string"
-                }, {
-                    data: "Characteristics",
-                    view: "int-row"
-                }, {
-                    data: "Skills",
-                    view: "int-list"
-                }, {
-                    data: "Items",
-                    view: "link-list"
-                }]
-            };
-            CurrentEntity.entity.data = [
-                "name goes here"
-                , [6, 7, 8, 9]
-                , [1, 2, 3], [{
-                    link: "354jnkwj5nkjsdfn43",
-                    name: "Item1"
-                }, {
-                    link: "12j43k3sdfnjn5d54n",
-                    name: "Item2"
-                }]];
+
+            //            CurrentEntity.entity.arch = {
+            //                name: "",
+            //                about: "Holds the data for the stuff",
+            //                tags: ["fnd"],
+            //                displayField: "Name",
+            //                data: [{
+            //                    name: "Name"
+            //                }, {
+            //                    name: "Characteristics",
+            //                    type: "array-val",
+            //                    data: [{
+            //                        name: "int"
+            //                    }, {
+            //                        name: "char"
+            //                    }, {
+            //                        name: "float"
+            //                    }, {
+            //                        name: "string"
+            //                    }]
+            //                }, {
+            //                    name: "Skills",
+            //                    type: "array-val",
+            //                    data: [{
+            //                        name: "skill1"
+            //                    }, {
+            //                        name: "skill2"
+            //                    }, {
+            //                        name: "skill3"
+            //                    }]
+            //                }, {
+            //                    name: "Items",
+            //                    type: "array-arch"
+            //                }],
+            //                mainView: [{
+            //                    data: "Name",
+            //                    view: "single-string"
+            //                }, {
+            //                    data: "Characteristics",
+            //                    view: "int-row"
+            //                }, {
+            //                    data: "Skills",
+            //                    view: "int-list"
+            //                }, {
+            //                    data: "Items",
+            //                    view: "link-list"
+            //                }]
+            //            };
+            //            CurrentEntity.entity.data = [
+            //                "name goes here"
+            //                , [6, 7, 8, 9]
+            //                , [1, 2, 3], [{
+            //                    link: "354jnkwj5nkjsdfn43",
+            //                    name: "Item1"
+            //                }, {
+            //                    link: "12j43k3sdfnjn5d54n",
+            //                    name: "Item2"
+            //                }]];
+
+            vm.init = function () {
+                vm.editing = CurrentEntity.entity.editing;
+                vm.d = CurrentEntity.entity.data;
+                vm.arch = CurrentEntity.entity.arch;
+            }
+            vm.currentEntityUpdate = function () {
+                console.log("one update")
+                vm.init();
+            }
+
+            CurrentEntity.listeners.push(vm);
+
+            CurrentEntity.updateAll();
 
 
-            vm.editing = CurrentEntity.entity.editing;
-            vm.d = CurrentEntity.entity.data;
-            vm.arch = CurrentEntity.entity.arch;
+
+
 
             vm.editOptions = getEditOptions();
             vm.editSubOptions = getEditSubOptions();
+
+
 
             vm.getIndexBySubName = function (name, subName) {
                 var dd = _.findIndex(CurrentEntity.entity.arch.data, function (it) {
@@ -93,7 +109,7 @@
                 vm.searchType = op;
             };
 
-            vm.addOneToSmall = function (index){
+            vm.addOneToSmall = function (index) {
                 console.log("add one to", index)
             };
 

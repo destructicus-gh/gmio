@@ -44,6 +44,11 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: 'views/archetypes/archetypes-one.html',
                     controller: 'ArchetypeOneController',
                     controllerAs: 'vm'
+                },
+                'many@archetype': {
+                    templateUrl: 'views/archetypes/archetypes-many.html',
+                    controller: 'ArchetypeManyController',
+                    controllerAs: 'vm'
                 }
             }
         });
