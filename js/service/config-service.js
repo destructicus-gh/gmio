@@ -56,6 +56,7 @@
             }
 
 
+>>>>>>> refs/remotes/origin/master
         };
     }]);
 })();

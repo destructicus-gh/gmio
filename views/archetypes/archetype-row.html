@@ -1,0 +1,9 @@
+<div class="grid">
+    <div class="grid__row">
+        <div class="grid__item__padless"
+             ng-style="(definition.float == 'right')?{'justify-content':'flex-end', 'text-align':'right'}:{'justify-content':'flex-start', 'text-align':'left'}"
+             ng-repeat="definition in definitions">
+            {{(definition.data.substr(0,1)=='$')?(archetype[definition.data.substr(1)]):(data[definition.data])}}
+        </div>
+    </div>
+</div>
