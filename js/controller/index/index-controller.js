@@ -10,16 +10,16 @@
         vm.navBar = NavBarService;
         vm.state = ApplicationState;
 
-        var prod = false;
+        var auth = false;
 
-        if (!prod) {
+        if (auth) {
             setTimeout(function () {
                 DriveAuthenticationService.checkAuthentication().then(function (result) {
                     vm.authenticatedState = "pass";
                 }, function (result) {
                     vm.authenticatedState = "sucked";
                     DriveAuthenticationService.login().then(function (value) {
-                        console.log("login generates", value)
+                        console.log("login generates", value);
                         vm.authenticatedState = "pass";
                     }, function (value) {
                         vm.authenticatedState = "sucked";
