@@ -12,10 +12,10 @@
                      , "https://www.googleapis.com/auth/drive.appfolder"];
         this.scopes = SCOPES;
         return {
-            client_id: CLIENT_ID
-            , scopes: SCOPES
-            , checkAuthentication: checkAuthentication
-            , login: loginPopup
+            client_id: CLIENT_ID,
+            scopes: SCOPES,
+            checkAuthentication: checkAuthentication,
+            login: loginPopup
         };
 
         function loadDriveApi() {
@@ -29,9 +29,9 @@
 
             return $q.when(
                 gapi.auth.authorize({
-                    'client_id': CLIENT_ID
-                    , 'scope': SCOPES.join(' ')
-                    , 'immediate': true
+                    'client_id': CLIENT_ID,
+                    'scope': SCOPES.join(' '),
+                    'immediate': true
                 }, function handleAuthResult(authResult) {
                     console.log("handling result")
                     var authorizeDiv = document.getElementById('authorize-div');
@@ -52,13 +52,12 @@
         function loginPopup() {
             return $q.when(
                 gapi.auth.authorize({
-                        client_id: CLIENT_ID
-                        , scope: SCOPES
-                        , immediate: false
-                    }
-                    , function (result) {
-                        console.log(result);
-                    }));
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    immediate: false
+                }, function (result) {
+                    console.log(result);
+                }));
         }
 
                 }]);

@@ -12,6 +12,10 @@
     <a ui-sref=".paragraph" class="btn">Paragraph</a>
 -->
     <a ng-click="home.saveTest()" class="btn">Save Test</a>
+    <div model-edit id="t" title="Test the Model Editor" model="home.testModel" array-hints="home.names">
+        <a class="btn">Edit Model</a>
+    </div>
+    {{home.testModel}}
 </div>
 
 <!--<div ui-view></div>-->

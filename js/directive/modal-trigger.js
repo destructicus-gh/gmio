@@ -6,17 +6,18 @@
     'use strict';
     angular.module('routerApp').directive('modalTrigger', ["$compile", function ($compile) {
         return {
-            scope: {url: '@'},
+            scope: {
+                title: '@',
+                url: '=',
+                id: '@'
+            },
+            transclude: true,
+            templateUrl: 'views/modal/modal-shell.html',
             link: function (scope, element, attrs) {
-                var text = '<div id="modal1" class="modal open">'+
-                    ' <div class="modal-content" ng-click="openModal(1)"> <h1>TITLE</h1><div class="modal-footer">'+
-                    '<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a> </div> </div>';
-                scope.openModal = function(id){
-                    console.log("open modal", id);
-                    $('#modal1').openModal();
+                var open = function (id) {
+                    $('#modal' + scope.id).openModal();
                 };
-                //element.append($compile("<div ng-include=\"'"+scope.url+"'\"></div>")(scope));
-                element.append($compile(text)(scope));
+                scope.openModal = open;
             }
         }
     }]);

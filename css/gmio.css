@@ -15,6 +15,10 @@
     padding: 12px;
 }
 
+.grid__item__padless {
+    flex: 1;
+}
+
 .green-box {
     background-color: #26a69a;
     color: #eafaf9;

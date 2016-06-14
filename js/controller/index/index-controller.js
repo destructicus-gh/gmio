@@ -10,9 +10,9 @@
         vm.navBar = NavBarService;
         vm.state = ApplicationState;
 
-        var prod = true;
+        var auth = false;
 
-        if (!prod) {
+        if (auth) {
             setTimeout(function () {
                 DriveAuthenticationService.checkAuthentication().then(function (result) {
                     vm.authenticatedState = "pass";

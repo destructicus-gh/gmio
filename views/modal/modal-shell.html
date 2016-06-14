@@ -1,0 +1,10 @@
+<div ng-click="openModal()" ng-transclude></div>
+<div id="modal{{id}}" class="modal">
+    <div class="modal-content">
+        <h2>{{title}}</h2>
+        <div ng-include="url"></div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+</div>
