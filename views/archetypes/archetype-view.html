@@ -21,24 +21,27 @@
                                     ng-class="{active: isList,'show-content':exp, 'hide-content':!exp}">
                                     <div class="grid">
                                         <div class="grid__row">
-                                            <div class="grid__item__padless"
-                                                 style="align-items: center"
-                                                 ng-style="{'justify-content':'flex-start', 'text-align':'left'}">
-                                                <button class="btn waves-effect waves-light black"
+                                            <div class="grid__item__padless grid__row"
+                                                 style="align-items: center;justify-content:flex-start; flex:6;text-align:left">
+                                                <span class="grid__item__padless"
+                                                      style="display: flex;flex:8;padding:0 1rem; width:10em">
+                                                    {{viewElement.label}}</span>
+
+                                                <button class="btn waves-effect waves-light black grid__item__padless"
                                                         ng-style="showEdit?{'opacity':1}:{'opacity':0, 'padding':0, 'width':0}"
-                                                        style="padding:0 0.5rem;"
+                                                        style="padding:0 0.5rem; flex:1"
                                                         ng-click="button.callback(vm.getIndexByName(view.data))">
                                                     <i class="material-icons">edit</i>
                                                 </button>
-                                                <p style="display: flex;padding:0 1rem; width:10em"> {{viewElement.label}}</p>
                                             </div>
                                             <div class="grid__item__padless" ng-if="!isList"
-                                                 ng-style="{'justify-content':'flex-end', 'text-align':'right'}">
+                                                 style="align-items: flex-end;flex:1;text-align: right; padding-left: 20px ">
                                                 <p style="display: flex">{{instance[viewElement.data]}}</p>
                                             </div>
-                                            <div class="grid__item__padless" ng-if="isList"
-                                                 style="align-items: flex-end;flex:0">
-                                                <p style="display: flex;" ng-click="exp=!exp">{{exp}}<i class="material-icons">keyboard_arrow_down</i></p>
+                                            <div ng-if="isList"
+                                                 style="text-align: right; padding-left: 20px; cursor: pointer;">
+                                                <p style="display: flex;" ng-click="exp=!exp">{{exp}}<i
+                                                        class="material-icons">{{exp?'keyboard_arrow_up':'keyboard_arrow_down'}}</i></p>
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +50,8 @@
                                 </li>
                                 <!--Set Data row-->
                                 <li class="collection-item data-content"
-                                    ng-if="dataDefinition.type == 'set' && viewElement.direction =='col'">
+                                    ng-if="dataDefinition.type == 'set' && viewElement.direction =='col'"
+                                    ng-class="exp?'show-content':'hide-content'">
                                     <div class="grid">
                                         <div class="grid__row">
                                             <div class="grid__item__padless grid__col"
@@ -55,7 +59,9 @@
                                                  ng-repeat="item in instance[viewElement.data] track by $index">
 
                                                 <p class="grid__item__padless kill-padding kill-margin">{{item}}</p>
-                                                <p class="grid__item__padless kill-padding kill-margin"> {{dataDefinition.items[$index].name}}</p>
+
+                                                <p class="grid__item__padless kill-padding kill-margin">
+                                                    {{dataDefinition.items[$index].name}}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -54,9 +54,6 @@
                     id: this.configFileId
                 }, JSON.stringify(this.settings));
             }
-
-
->>>>>>> refs/remotes/origin/master
         };
     }]);
 })();

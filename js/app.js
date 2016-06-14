@@ -18,7 +18,13 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'views/systems.html'
         })
         .state('modal', {
-
+            controller: function () {
+                var vm = this;
+                vm.openModal = function () {
+                    console.log("clled controller")
+                }
+            },
+            controllerAs: 'vm',
             url: '/modal',
             template: '<div data-modal-trigger ng-click="openModal()" url="views/settings.html">HEY</div>'
         })
@@ -28,18 +34,6 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             controller: "ArchetypeViewController",
             controllerAs: 'vm',
             templateUrl: 'views/archetypes/archetype-view.html'
-
-            controller: function () {
-                var vm = this;
-                vm.openModal = function () {
-                    console.log("clled controller")
-                }
-            },
-            controllerAs: 'vm',
-            url: '/modal',
-            template: '<div data-modal-trigger  url="\'views/systems.html\'" id="2" title="settings"><p>Inner</p></div>'
-                //            template: '<div data-modal-trigger  url="\'views/systems.html\'" id="2" title="settings"><p>Inner</p></div>'
-
         })
         .state('settings', {
             url: '/settings',
