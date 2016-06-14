@@ -6,6 +6,13 @@
     'use strict';
     angular.module('routerApp').controller('HomeController', ['DriveFileService', 'FileStructureService', function (DriveFileService, FileStructureService) {
         var vm = this;
+        vm.names = {
+            names: ["a", "v", "c", "w", "f"],
+            editor: "range",
+            min: 0,
+            max: 5
+        };
+        vm.testModel = [2, 3, 4, 5, 6];
 
         var fileId = "0B1ZHB-SPe0e-Wk5ITWhnSG1hT1U";
         vm.items = [];
@@ -21,9 +28,9 @@
         //            });
         vm.listSystemFiles = function () {
             drive.files.list({
-                spaces: 'appDataFolder'
-                , fields: 'nextPageToken, files(id, name)'
-                , pageSize: 100
+                spaces: 'appDataFolder',
+                fields: 'nextPageToken, files(id, name)',
+                pageSize: 100
             }, function (err, res) {
                 if (err) {
                     // Handle error
@@ -72,11 +79,11 @@
         vm.saveSystem = function () {
             DriveFileService.saveFile({
 
-                'title': 'config.json'
-                , 'parents': [{
+                'title': 'config.json',
+                'parents': [{
                     id: 'appfolder'
-                    }]
-                , mimeType: 'text/plain'
+                    }],
+                mimeType: 'text/plain'
 
             }, "{}").then(function (ret) {
                 console.log("system file", ret);
@@ -91,8 +98,8 @@
                     var nextPageToken = resp.nextPageToken;
                     if (nextPageToken) {
                         request = gapi.client.drive.children.list({
-                            'folderId': folderId
-                            , 'pageToken': nextPageToken
+                            'folderId': folderId,
+                            'pageToken': nextPageToken
                         });
                         retrievePageOfChildren(request, result);
                     } else {

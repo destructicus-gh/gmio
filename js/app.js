@@ -17,6 +17,18 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/rule-sets',
             templateUrl: 'views/systems.html'
         })
+        .state('modal', {
+            controller: function () {
+                var vm = this;
+                vm.openModal = function () {
+                    console.log("clled controller")
+                }
+            },
+            controllerAs: 'vm',
+            url: '/modal',
+            template: '<div data-modal-trigger  url="\'views/systems.html\'" id="2" title="settings"><p>Inner</p></div>'
+                //            template: '<div data-modal-trigger  url="\'views/systems.html\'" id="2" title="settings"><p>Inner</p></div>'
+        })
         .state('settings', {
             url: '/settings',
             controller: "SettingsController",
@@ -33,7 +45,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             controllerAs: 'vm',
             views: {
                 '': {
-                    templateUrl: 'views/archetypes/archetypes.html',
+                    templateUrl: 'views/archetypes/archetypes.html'
                 },
                 'new@archetype': {
                     templateUrl: 'views/archetypes/archetypes-new.html',
