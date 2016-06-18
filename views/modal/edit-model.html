@@ -1,0 +1,44 @@
+<div ng-click="openModal()" ng-transclude style="display:inline-flex">
+</div>
+<div style="color:black" id="modal{{id}}" class="modal">
+    <div class="modal-content">
+        <h2>{{title}}</h2>
+        <div ng-if="!isObject">
+            Please send a object for editing, not a primitive.
+        </div>
+        <div class="grid" ng-if="isObject&&!isArray">
+            <div class="grid__row" ng-repeat="(key, value) in model">
+                <div style="flex:1" class="grid__item__padless">
+                    <p style="display:flex;text-transform:capitalize">{{key}}</p>
+                </div>
+                <div style="flex:4" class="grid__item__padless">
+                    <input style="display:flex" ng-model="temp[key]" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="grid" ng-if="isArray">
+            <div class="grid__row" ng-repeat="item in temp track by $index">
+                <div style="flex:1" class="grid__item__padless">
+                    <p style="display:flex;text-transform:capitalize">{{arrayHints.names[$index]}}</p>
+                </div>
+                <div style="flex-direction:column;flex:4;display:flex" class="grid__item__padless">
+                    <input ng-if="arrayHints.editor == 'text'" style="display:flex" ng-model="temp[$index]" type="text" />
+                    <div class="range-field grid__item__padless  grid__row" ng-if="arrayHints.editor == 'range'" style="align-items:center">
+                        <input type="range" style="display:flex" ng-model="temp[$index]" id="test" min="{{arrayHints.min}}" max="{{arrayHints.max}}" />
+
+                    </div>
+                </div>
+                <div ng-if="arrayHints.editor == 'range'" style="display:flex;">
+                    <p style=" padding: 0 10px;text-transform:capitalize">
+                        {{temp[$index]}}</p>
+                </div>
+            </div>
+        </div>
+        {{model}}
+        <br/> {{temp}}
+    </div>
+    <div class="modal-footer">
+        <a ng-click="cancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a ng-click="save()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    </div>
+</div>
