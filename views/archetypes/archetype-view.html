@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s12 m12 l6">
+                <h3>View Test</h3>
+            </div>
+            <div class="col s12 m12 l6" ng-init="instance=vm.getInstance()"><!--Start Main View-->
+                <div class="row">
+                    <div class="col s12 m12 l12">
+
+                        <div ng-repeat="viewElement in vm.archetype.views[0].data">
+                            <ul ng-init="dataDefinition = vm.getDataDefinition(viewElement);exp=false"
+                                ng-class="{expanded:exp, nexpanded:!exp}"
+                                class="collection kill-margin">
+                                <!--Title-->
+                                <li class="collection-item"
+                                    ng-click="showEdit=true"
+                                    ng-mouseenter="showEdit=true"
+                                    ng-mouseleave="showEdit=false"
+                                    ng-init="isList = (dataDefinition.type == 'set' || dataDefinition.type=='list')"
+                                    ng-class="{active: isList,'show-content':exp, 'hide-content':!exp}">
+                                    <div class="grid">
+                                        <div class="grid__row">
+                                            <div class="grid__item__padless"
+                                                 style="align-items: center"
+                                                 ng-style="{'justify-content':'flex-start', 'text-align':'left'}">
+                                                <button class="btn waves-effect waves-light black"
+                                                        ng-style="showEdit?{'opacity':1}:{'opacity':0, 'padding':0, 'width':0}"
+                                                        style="padding:0 0.5rem;"
+                                                        ng-click="button.callback(vm.getIndexByName(view.data))">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <p style="display: flex;padding:0 1rem; width:10em"> {{viewElement.label}}</p>
+                                            </div>
+                                            <div class="grid__item__padless" ng-if="!isList"
+                                                 ng-style="{'justify-content':'flex-end', 'text-align':'right'}">
+                                                <p style="display: flex">{{instance[viewElement.data]}}</p>
+                                            </div>
+                                            <div class="grid__item__padless" ng-if="isList"
+                                                 style="align-items: flex-end;flex:0">
+                                                <p style="display: flex;" ng-click="exp=!exp">{{exp}}<i class="material-icons">keyboard_arrow_down</i></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Singular Data-->
+                                </li>
+                                <!--Set Data row-->
+                                <li class="collection-item data-content"
+                                    ng-if="dataDefinition.type == 'set' && viewElement.direction =='col'">
+                                    <div class="grid">
+                                        <div class="grid__row">
+                                            <div class="grid__item__padless grid__col"
+                                                 style="align-items: center"
+                                                 ng-repeat="item in instance[viewElement.data] track by $index">
+
+                                                <p class="grid__item__padless kill-padding kill-margin">{{item}}</p>
+                                                <p class="grid__item__padless kill-padding kill-margin"> {{dataDefinition.items[$index].name}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+
+                                <!--Set Data row-->
+                                <li class="collection-item data-content"
+                                    ng-if="dataDefinition.type == 'set'  && viewElement.direction=='row'"
+                                    ng-repeat="item in instance[viewElement.data] track by $index">
+                                    <span> {{dataDefinition.items[$index].name}}</span>
+                                    <a class="secondary-content">{{item}}</a>
+                                </li>
+                                <!--List Data-->
+                                <li class="collection-item data-content"
+                                    ng-if=" dataDefinition.type=='list'"
+                                    ng-repeat="item in instance[viewElement.data] track by $index">
+                                    <div archetype-row-view
+                                         archetype="vm.archetype"
+                                         definitions="vm.archetype.views[1].data"
+                                         data="vm.mockServiceCall(dataDefinition.contents, item)"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
