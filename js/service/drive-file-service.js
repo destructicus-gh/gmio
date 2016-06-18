@@ -23,8 +23,10 @@
             loadFile: loadFile,
             saveFile: saveFile,
             newFolder: newFolder,
+            newFile: newFile,
             searchFile: searchFile,
             searchInFolder: searchInFolder,
+            filesInFolder: filesInFolder,
             getMetadata: getMetadata,
             justOne: justOne,
             trashFile: trashFile
@@ -135,6 +137,17 @@
             return $q.when(uploadRequest);
         }
 
+        function filesInFolder(folderId) {
+            var uploadRequest = gapi.client.request({
+                path: '/drive/v2/files/' + ((folderId) ? folderId : 'root') + '/children',
+                method: 'GET',
+                params: {
+                    q: "not trashed"
+                }
+            });
+            return $q.when(uploadRequest);
+        }
+
         function getMetadata(fileId) {
             var uploadRequest = gapi.client.request({
                 path: '/drive/v2/files/' + fileId,
@@ -167,6 +180,31 @@
                         "id": parent
                     }],
                     "mimeType": "application/vnd.google-apps.folder"
+                }
+            });
+            return $q.when(uploadRequest);
+        }
+
+        function newFile(filename, parent, bypassCheck) {
+            if (!bypassCheck) {
+                searchInFolder("title contains '" + filename + "'", parent).then(function (raw) {
+                    if (raw.result.items.length > 0) {
+                        return $q.when(raw.result.items[0]);
+                    }
+                });
+            }
+            var uploadRequest = gapi.client.request({
+                path: '/drive/v2/files',
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: {
+                    "title": filename,
+                    "parents": [{
+                        "id": parent
+                    }],
+                    "mimeType": "text/plain"
                 }
             });
             return $q.when(uploadRequest);

@@ -10,7 +10,7 @@
         vm.navBar = NavBarService;
         vm.state = ApplicationState;
 
-        var auth = false;
+        var auth = true;
 
         if (auth) {
             setTimeout(function () {
@@ -28,7 +28,7 @@
                 }, function (result) {
                     console.log("check auth", result);
                 }).then(function (ret) {
-                    return FileStructureService.init();
+                    return //FileStructureService.init();
                 }).then(function (ret) {
                     console.log("return from fileinit", ret);
                 });

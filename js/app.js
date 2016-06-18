@@ -14,6 +14,13 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('system', {
+            controller: function (FileSystem) {
+                var vm = this;
+                vm.system = FileSystem;
+                FileSystem.init();
+
+            },
+            controllerAs: 'vm',
             url: '/rule-sets',
             templateUrl: 'views/systems.html'
         })
@@ -29,7 +36,7 @@ routerApp.config(function ($stateProvider, $urlRouterProvider) {
             template: '<div data-modal-trigger ng-click="openModal()" url="views/settings.html">HEY</div>'
         })
 
-        .state('view', {
+    .state('view', {
             url: '/view',
             controller: "ArchetypeViewController",
             controllerAs: 'vm',
